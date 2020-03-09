@@ -36,6 +36,9 @@ option(LIBIGL_WITH_PYTHON            "Use Python"                   ${LIBIGL_BUI
 
 
 option(LIBIGL_DISABLE_THREADS        "Disable Threads"              OFF)
+if (LIBIGL_DISABLE_THREADS)
+    add_definitions(-DIGL_PARALLEL_FOR_FORCE_SERIAL)
+endif()
 ### End
 
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
