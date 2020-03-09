@@ -33,6 +33,9 @@ option(LIBIGL_WITH_TRIANGLE          "Use Triangle"                 ON)
 option(LIBIGL_WITH_PREDICATES        "Use exact predicates"         ON)
 option(LIBIGL_WITH_XML               "Use XML"                      ON)
 option(LIBIGL_WITH_PYTHON            "Use Python"                   ${LIBIGL_BUILD_PYTHON})
+
+
+option(LIBIGL_DISABLE_THREADS        "Disable Threads"              OFF)
 ### End
 
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
