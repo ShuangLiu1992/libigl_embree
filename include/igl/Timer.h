@@ -14,7 +14,7 @@
 #ifndef IGL_TIMER_H
 #define IGL_TIMER_H
 
-#ifdef WIN32   // Windows system specific
+#ifdef _WIN32   // Windows system specific
 #include <windows.h>
 #elif __APPLE__ // Unix based system specific
 #include <mach/mach_time.h> // for mach_absolute_time
@@ -31,7 +31,7 @@ namespace igl
     // default constructor
     Timer():
       stopped(0),
-#ifdef WIN32
+#ifdef _WIN32
       frequency(),
       startCount(),
       endCount()
@@ -43,7 +43,7 @@ namespace igl
       endCount()
 #endif
     {
-#ifdef WIN32
+#ifdef _WIN32
       QueryPerformanceFrequency(&frequency);
       startCount.QuadPart = 0;
       endCount.QuadPart = 0;
@@ -88,7 +88,7 @@ namespace igl
     void   start()               
     {
       stopped = 0; // reset stop flag
-#ifdef WIN32
+#ifdef _WIN32
       QueryPerformanceCounter(&startCount);
 #elif __APPLE__
       startCount = mach_absolute_time();
@@ -103,7 +103,7 @@ namespace igl
     {
       stopped = 1; // set timer stopped flag
 
-#ifdef WIN32
+#ifdef _WIN32
       QueryPerformanceCounter(&endCount);
 #elif __APPLE__
       endCount = mach_absolute_time();
@@ -134,7 +134,7 @@ namespace igl
       double startTimeInMicroSec = 0;
       double endTimeInMicroSec = 0;
 
-#ifdef WIN32
+#ifdef _WIN32
       if(!stopped)
         QueryPerformanceCounter(&endCount);
 
@@ -161,7 +161,7 @@ namespace igl
   private:
     // stop flag 
     int    stopped;               
-#ifdef WIN32
+#ifdef _WIN32
     // ticks per second
     LARGE_INTEGER frequency;      
     LARGE_INTEGER startCount;     
